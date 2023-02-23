@@ -35,7 +35,7 @@ public class ServiceManager {
         //这里使用到common模块下的反射方法来获取
         Method[] methods = ReflectionUtils.getPublicMethods(interfaceClass);
         for (Method method : methods) {
-            ServiceInstance sis = new ServiceInstance(bean ,method);
+            ServiceInstance sis = new ServiceInstance(bean, method);
 
             //为了往map里面放，我们还得生成一个key。所以我们回到descriptor去写一个from方法,然后再使用from方法
             ServiceDescriptor serviceDescriptor = ServiceDescriptor.from(interfaceClass, method);
@@ -54,7 +54,6 @@ public class ServiceManager {
         ServiceDescriptor serviceDescriptor = request.getService();
         log.info(" serviceDescriptor : {}", request.getService());
         return services.get(serviceDescriptor);
-
         //map的key——ServiceDescriptor是我们自己的一个类，而使用map的get方法的时候是用ServiceDescriptor的
         // equals方法去判断的，所以现在我们需要对这个类的equals方法进行重写，但是在重写eqauls方法之前我们还要重写
         // hashCode()方法

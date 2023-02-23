@@ -1,12 +1,10 @@
 package com.clong.gkrpc.client;
 
-import com.asher.gkrpc.proto.*;
 import com.clong.gkrpc.proto.Request;
 import com.clong.gkrpc.proto.Response;
 import com.clong.gkrpc.proto.ServiceDescriptor;
 import com.clong.gkrpc.proto.codec.Decoder;
 import com.clong.gkrpc.proto.codec.Encoder;
-
 import com.clong.gkrpc.transport.TransportClient;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -40,7 +38,7 @@ public class RemoteInvoker implements InvocationHandler {
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) {
         /*要调用远程服务，首先构造一个请求，把这个请求通过网络发送给server，发送完之后等待server的响应，然后从响应
         里面拿到数据，一次调用就结束了*/
 

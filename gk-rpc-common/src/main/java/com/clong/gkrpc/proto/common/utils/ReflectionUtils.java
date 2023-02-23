@@ -45,7 +45,7 @@ public class ReflectionUtils {
 
 
     /*
-     * @Description 获取指定对象的指定方法
+     * @Description 调用指定对象的指定方法
      * @Param obj: 被调用方法的对象
      * @Param method: 被调用的方法
      * @Param args: 方法需要的参数

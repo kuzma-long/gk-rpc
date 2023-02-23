@@ -54,7 +54,6 @@ public class RandomTransportSelector implements TransportSelector {
 
     @Override
     public synchronized void release(TransportClient client) {
-
         //client被释放之后要加到可用client集合中
         clients.add(client);
     }

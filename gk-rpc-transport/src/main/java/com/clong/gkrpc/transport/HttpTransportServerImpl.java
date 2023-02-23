@@ -34,12 +34,10 @@ public class HttpTransportServerImpl implements TransportServer {
         this.handler = handler;
         // 创建Jetty的服务
         this.server = new Server(port);
-
         // servlet 接收请求，针对每个请求，Jetty会从线程池中拿出一个线程去处理请求
         ServletContextHandler ctx = new ServletContextHandler();
         // 注册到server中
         server.setHandler(ctx);
-
         // 创建ServletHolder托管RequestServlet
         ServletHolder holder = new ServletHolder(new RequestServlet());
         ctx.addServlet(holder, "/*");
@@ -55,7 +53,7 @@ public class HttpTransportServerImpl implements TransportServer {
             server.join();
         } catch (Exception e) {
             //让logback来处理打印错误信息
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
     }
 
@@ -75,18 +73,14 @@ public class HttpTransportServerImpl implements TransportServer {
         protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
             //加一些日志信息
             log.info("client connect");
-
             //client与server连接之后会发送数据过来，我们需要拿到client发送的数据，怎么做呢
             //使用request里面的getInput方法
             InputStream in = req.getInputStream();
-
             //我们还需要返回Output
             OutputStream out = resp.getOutputStream();
-
             if (handler != null) {
                 handler.onRequest(in, out);
             }
-
             //把out给flush一下
             out.flush();
 /*

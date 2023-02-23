@@ -34,7 +34,6 @@ public class ServiceDescriptor {
         serviceDescriptor.setClazz(clazz.getName());
         serviceDescriptor.setMethod(method.getName());
         serviceDescriptor.setReturnType(method.getReturnType().getTypeName());
-
         Class<?>[] parameterClass = method.getParameterTypes();
         String[] parameterTypes = new String[parameterClass.length];
         for (int i = 0; i < parameterClass.length; i++) {

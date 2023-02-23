@@ -30,30 +30,22 @@ public class HTTPTransportClientImpl implements TransportClient {
     public InputStream write(InputStream data) {
         //我们在写数据的时候，第一步是要把connection给打开的，
         // 我们直接使用jdk自带的HTTPConnection
-
         try {
             HttpURLConnection httpConn = (HttpURLConnection) new URL(url).openConnection();
-
             //因为需要输出，所以setDoOutput设置为true
             httpConn.setDoOutput(true);
-
             //同时也需要读数据所以setDoInput设置为true
             httpConn.setDoInput(true);
-
             //我们不需要使用cache
             httpConn.setUseCaches(false);
-
             //我们使用post方法
             httpConn.setRequestMethod("POST");
-
             //连接
             httpConn.connect();
-
             //连接完之后我们需要把data数据发送给server
             //在这里的做法是选择使用commons.io包的IOUtils中copy方法
             // 把data拷贝到outputStream里面去
             IOUtils.copy(data, httpConn.getOutputStream());
-
             //获取http的code
             int resultCode = httpConn.getResponseCode();
             if (resultCode == HttpURLConnection.HTTP_OK) {

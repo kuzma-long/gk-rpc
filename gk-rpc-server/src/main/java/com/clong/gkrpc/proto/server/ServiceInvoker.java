@@ -15,7 +15,6 @@ public class ServiceInvoker {
     //调用具体服务
     public Object invoke(ServiceInstance service, Request request) {
         //利用我们之前的反射工具类
-        return ReflectionUtils.invoke(service.getTarget(), service.getMethod(),
-                request.getParameters());
+        return ReflectionUtils.invoke(service.getTarget(), service.getMethod(), request.getParameters());
     }
 }
